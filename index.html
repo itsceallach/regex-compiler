@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automata Group 3</title>
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <style>
+        body {
+            margin: auto;
+            text-align: center;
+            background-color: #FAD4D4;
+        }
+        .center {
+            border: 5px dashed #F47C7C;
+            width: 60%;
+            margin:auto;
+            margin-bottom: 30px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            padding:5px;
+        }
+        .btn {
+            border: 5px dashed #F47C7C;
+            width: 10%;
+            margin-bottom: 50px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            padding:5px;
+        }
+
+        h1 {
+            font-size: 50px;
+            text-align: center;
+            color: #F47C7C;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .image {
+            display: none;
+            margin: auto;
+        }
+        
+        .input {
+            border: 5px dashed #F47C7C;
+            width: 30%;
+            margin:auto;
+            margin-bottom: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            padding:5px;
+        }
+        .ok {
+            border: 5px dashed #F47C7C;
+            width: 15%;
+            left: 0;
+            right: 0;
+            margin-bottom: 10px;
+            text-align: center;
+            padding:5px;
+        }
+        .output{
+            border: 5px dashed #F47C7C;
+            width: 30%;
+            margin:auto;
+            margin-bottom: 10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            padding:10px;
+        }
+        .box{
+            background-color: #EF9F9F;
+            border-radius: 25px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Automata Compiler</h1>
+
+    <div class="center">(aa + bb)(a + b)*(a + b + ab + ba)(a + b + ab + ba)*(aa + bab)* (a + b + aa)(a + b + bb + aa)*</div>
+    <div class="input">
+        <input type="text" id="test-input" class="box"/> 
+        <button id="test-button" pys-onclick="my_function" class="ok">Check</button>
+        <p id="test-output" class="output"></p>
+        <py-script>
+import re
+
+pattern = "(aa|bb)(a|b)*(a|b|ab|ba)(a|b|ab|ba)*(aa|bab)*(a|b|aa)(a|b|bb|aa)*"
+
+def my_function(*args, **kwargs):
+   
+    test_input = Element("test-input").element.value
+    if(re.search(pattern, test_input)):
+        Element("test-output").element.innerHTML = "valid"
+    else:
+        Element("test-output").element.innerHTML = "invalid"
+        </py-script>
+    </div>
+    <button onclick="show1()" id="btn1" class="btn">
+        Display DFA
+    </button>
+    
+    <button onclick="show2()" id="btn2" class="btn">
+        Display CFG
+    </button>
+    
+    <button onclick="show3()" id="btn3" class="btn">
+        Display PDA
+    </button>
+
+    <img id="dfa1" src="dfa-1.png" class="image"/>
+
+    <img id="cfg1" src="cfg-1.png" class="image""/>
+
+    <img id="pda1" src="pda-1.png" class="image"/>
+
+    <div class="center">((101 + (111)* + 100) + (1 + 0 + 11)*) (1 + 0 + 01)*(111 + 000 + 101)(1 + 0)*</div>
+    
+    <div class="input">
+        <input type="text" id="test-input2" class="box"/> 
+        <button id="test-button2" pys-onclick="my_function2" class="ok">Check</button>
+        <p id="test-output2" class="output"></p>
+        <py-script>
+import re
+
+pattern2 = "((101|(111)*|100)|(1|0|11)*)(1|0|01)*(111|000|101)(1|0)*"
+
+def my_function2(*args, **kwargs):
+   
+    test_input2 = Element("test-input2").element.value
+    if(re.search(pattern2, test_input2)):
+        Element("test-output2").element.innerHTML = "valid"
+    else:
+        Element("test-output2").element.innerHTML = "invalid"
+        </py-script>
+    </div>
+
+    <button onclick="show4()" id="btn4" class="btn">
+        Display DFA
+    </button>
+    
+    <button onclick="show5()" id="btn5" class="btn">
+        Display CFG
+    </button>
+    
+    <button onclick="show6()" id="btn6" class="btn">
+        Display PDA
+    </button>
+   
+
+    <script>
+        function show1() {
+ 
+            /* Access image by id and change
+            the display property to block*/
+            document.getElementById('dfa1')
+                    .style.display = "block";
+            document.getElementById('cfg1')
+                    .style.display = "none";
+            document.getElementById('pda1')
+                    .style.display = "none";
+            document.getElementById('dfa2')
+                    .style.display = "none";
+            document.getElementById('cfg2')
+                    .style.display = "none";
+            document.getElementById('pda2')
+                    .style.display = "none";
+ 
+            document.getElementById('btn')
+                    .style.display = "none";
+        }
+        function show2() {
+ 
+ /* Access image by id and change
+ the display property to block*/
+ document.getElementById('dfa1')
+         .style.display = "none";
+ document.getElementById('cfg1')
+         .style.display = "block";
+ document.getElementById('pda1')
+         .style.display = "none";
+ document.getElementById('dfa2')
+         .style.display = "none";
+ document.getElementById('cfg2')
+         .style.display = "none";
+ document.getElementById('pda2')
+         .style.display = "none";
+
+ document.getElementById('btn')
+         .style.display = "none";
+}
+function show3() {
+ 
+ /* Access image by id and change
+ the display property to block*/
+ document.getElementById('dfa1')
+         .style.display = "none";
+ document.getElementById('cfg1')
+         .style.display = "none";
+ document.getElementById('pda1')
+         .style.display = "block";
+ document.getElementById('dfa2')
+         .style.display = "none";
+ document.getElementById('cfg2')
+         .style.display = "none";
+ document.getElementById('pda2')
+         .style.display = "none";
+
+ document.getElementById('btn')
+         .style.display = "none";
+}
+function show4() {
+ 
+ /* Access image by id and change
+ the display property to block*/
+ document.getElementById('dfa1')
+         .style.display = "none";
+ document.getElementById('cfg1')
+         .style.display = "none";
+ document.getElementById('pda1')
+         .style.display = "none";
+ document.getElementById('dfa2')
+         .style.display = "block";
+ document.getElementById('cfg2')
+         .style.display = "none";
+ document.getElementById('pda2')
+         .style.display = "none";
+
+ document.getElementById('btn')
+         .style.display = "none";
+}
+function show5() {
+ 
+ /* Access image by id and change
+ the display property to block*/
+ document.getElementById('dfa1')
+         .style.display = "none";
+ document.getElementById('cfg1')
+         .style.display = "none";
+ document.getElementById('pda1')
+         .style.display = "none";
+ document.getElementById('dfa2')
+         .style.display = "none";
+ document.getElementById('cfg2')
+         .style.display = "block";
+ document.getElementById('pda2')
+         .style.display = "none";
+
+ document.getElementById('btn')
+         .style.display = "none";
+}
+function show6() {
+ 
+ /* Access image by id and change
+ the display property to block*/
+ document.getElementById('dfa1')
+         .style.display = "none";
+ document.getElementById('cfg1')
+         .style.display = "none";
+ document.getElementById('pda1')
+         .style.display = "none";
+ document.getElementById('dfa2')
+         .style.display = "none";
+ document.getElementById('cfg2')
+         .style.display = "none";
+ document.getElementById('pda2')
+         .style.display = "block";
+
+ document.getElementById('btn')
+         .style.display = "none";
+}
+</script>
+
+<img id="dfa2" src="dfa-2.png" class="image"/>
+
+<img id="cfg2" src="cfg-2.png" class="image"/>
+
+<img id="pda2" src="pda-2.png" class="image"/>
+</body>
+</html>
